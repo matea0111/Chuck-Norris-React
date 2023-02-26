@@ -28,28 +28,3 @@ body {
   text-align: center;
 }
 
-.Box h1{
-  margin-top: 0;
-  color: #CD5C5C;
-  font-weight: 700;
-}
-
-.Box p{
-  margin: 2rem;
-}
-
-.Box Button{
-  background-color: #FA8072;
-  color: white;
-  margin-bottom: 5px;
-  border-radius: 5px;
-  box-shadow:none;
-  padding: 1rem 0.5rem;
-  cursor: pointer;
-  border:#CD5C5C;
-
-}
-
-.Box button:active{
-  transform: scale(0.95);
-}

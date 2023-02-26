@@ -1,10 +1,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { API_URL } from "../const";
+import "../css/Home.css";
+import { Popup } from "../components/Popup";
 
 const HomePage = () => {
-  const API_URL = "https://api.chucknorris.io/jokes/random";
   const [joke, setJoke] = useState([]);
+  const [popupShown, setPopupShown] = useState(false);
 
   useEffect(() => {
     generateJoke();
@@ -17,6 +20,7 @@ const HomePage = () => {
         setJoke(response.data);
       })
       .catch((err) => console.log(err));
+    setPopupShown(false);
   };
 
   const saveJoke = () => {
@@ -28,6 +32,7 @@ const HomePage = () => {
       favourites.push(joke);
     }
     localStorage.setItem("favourites", JSON.stringify(favourites));
+    setPopupShown(true);
   };
 
   const checkDuplicates = (favourites, id) => {
@@ -43,8 +48,11 @@ const HomePage = () => {
       <div className="Box">
         <h1> Chuck Norris Joke Generator! </h1>
         <p key={joke.id}> {joke?.value} </p>
-        <button onClick={() => generateJoke}> GET NEW JOKE </button>
-        <button onClick={() => saveJoke}> SAVE JOKE</button>
+        <div className="ButtonLayout">
+          <button onClick={generateJoke}> GET NEW JOKE </button>
+          <button onClick={saveJoke}> SAVE JOKE</button>
+        </div>
+        {popupShown && <Popup message="Joke saved" />}
       </div>
     </div>
   );
